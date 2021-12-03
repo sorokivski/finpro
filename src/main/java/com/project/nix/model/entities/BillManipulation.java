@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Data
 @Table(name = "bill_manipulations")
@@ -32,7 +31,7 @@ public class BillManipulation extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private BillManipulationTypeEnum type;
 
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 

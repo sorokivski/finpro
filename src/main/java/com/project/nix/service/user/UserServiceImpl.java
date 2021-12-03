@@ -24,8 +24,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService
-{
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final AuthorityService authorityService;
@@ -33,8 +32,7 @@ public class UserServiceImpl implements UserService
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void register(UserDTO userDTO)
-    {
+    public void register(UserDTO userDTO) {
         Optional.ofNullable(userRepository.existsUserByEmail(userDTO.getEmail()))
                 .filter(isExists -> !isExists)
                 .map(ignore -> userMapper.userDTOtoUser(userDTO))
@@ -57,29 +55,24 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public User getUserByAuthentication(Authentication authentication)
-    {
+    public User getUserByAuthentication(Authentication authentication) {
         return userRepository.getUserByEmail(authentication.getName())
                 .orElseThrow(() -> new UserServiceException(UserServiceException.WRONG_AUTHENTICATION_DATA));
     }
 
     @Override
-    public User addMoney(Authentication authentication, BigDecimal amount)
-    {
+    public User addMoney(Authentication authentication, BigDecimal amount) {
         return manipulateWithMoney(authentication, amount, BillManipulationTypeEnum.INCOME);
     }
 
     @Override
-    public User withdraw(Authentication authentication, BigDecimal amount)
-    {
+    public User withdraw(Authentication authentication, BigDecimal amount) {
         return manipulateWithMoney(authentication, amount, BillManipulationTypeEnum.COSTS);
     }
 
     @Override
-    public User removeBillManipulation(@NonNull BillManipulation billManipulation)
-    {
-        User user = switch (billManipulation.getType())
-        {
+    public User removeBillManipulation(@NonNull BillManipulation billManipulation) {
+        User user = switch (billManipulation.getType()) {
             case INCOME -> manipulateWithMoney(billManipulation.getUser(), billManipulation.getMoneyAmount(), BillManipulationTypeEnum.COSTS);
             case COSTS -> manipulateWithMoney(billManipulation.getUser(), billManipulation.getMoneyAmount(), BillManipulationTypeEnum.INCOME);
             default -> throw new UserServiceException(BillServiceException.WRONG_MANIPULATION_TYPE);
@@ -89,20 +82,17 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public UserDTO getData(Authentication authentication)
-    {
+    public UserDTO getData(Authentication authentication) {
         return userRepository.getUserByEmail(authentication.getName())
                 .map(userMapper::userToUserDTO)
                 .orElseThrow(() -> new UserServiceException(UserServiceException.WRONG_AUTHENTICATION_DATA));
     }
 
-    private User manipulateWithMoney(Authentication authentication, BigDecimal amount, BillManipulationTypeEnum moneyManipulationType)
-    {
+    private User manipulateWithMoney(Authentication authentication, BigDecimal amount, BillManipulationTypeEnum moneyManipulationType) {
         return manipulateWithMoney(getUserByAuthentication(authentication), amount, moneyManipulationType);
     }
 
-    private User manipulateWithMoney(User user, BigDecimal amount, BillManipulationTypeEnum moneyManipulationType)
-    {
+    private User manipulateWithMoney(User user, BigDecimal amount, BillManipulationTypeEnum moneyManipulationType) {
         amount = amount.abs();
 
         BigDecimal userAmount = user.getMoneyAmount();

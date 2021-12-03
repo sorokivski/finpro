@@ -22,25 +22,23 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class JWTServiceImpl implements JWTService
-{
+public class JWTServiceImpl implements JWTService {
     @Value("${spring.security.jwt.key}")
     private String tokenFromProperties;
 
     private Key key;
 
     @PostConstruct
-    private void doOnInit()
-    {
+    private void doOnInit() {
         key = Keys.hmacShaKeyFor(tokenFromProperties.getBytes());
     }
 
     @Override
     public String generate(UserDetails userDetails) {
         return Jwts.builder().setClaims(Map.of(
-                    "email", userDetails.getUsername(),
-                    "password", userDetails.getPassword(),
-                    "auth", userDetails.getAuthorities()
+                        "email", userDetails.getUsername(),
+                        "password", userDetails.getPassword(),
+                        "auth", userDetails.getAuthorities()
                 ))
                 .signWith(key)
                 .compact();
@@ -48,8 +46,7 @@ public class JWTServiceImpl implements JWTService
 
     @Override
     public Optional<Authentication> parse(@NonNull String token) {
-        try
-        {
+        try {
             Claims claims = (Claims) Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
@@ -59,11 +56,9 @@ public class JWTServiceImpl implements JWTService
             return Optional.of(new UsernamePasswordAuthenticationToken(
                     claims.get("email"),
                     claims.get("password"),
-                    (List<Authority>)claims.get("auth")
+                    (List<Authority>) claims.get("auth")
             ));
-        }
-        catch (Throwable exception)
-        {
+        } catch (Throwable exception) {
             log.error(exception.getMessage());
             return Optional.empty();
         }

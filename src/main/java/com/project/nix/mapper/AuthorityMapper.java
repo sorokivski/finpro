@@ -6,8 +6,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
-public interface AuthorityMapper
-{
+public interface AuthorityMapper {
     @Mappings({
             @Mapping(target = "authority", source = "authority.authority")
     })

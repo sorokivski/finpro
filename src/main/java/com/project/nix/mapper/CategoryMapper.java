@@ -14,6 +14,7 @@ public interface CategoryMapper {
             @Mapping(target = "description", source = "categoryDTO.description")
     })
     Category categoryDTOtoCategory(CategoryDTO categoryDTO);
+
     @Mappings({
             @Mapping(target = "description", ignore = true)
     })

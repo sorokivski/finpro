@@ -7,8 +7,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class BaseEntityDTO
-{
+public class BaseEntityDTO {
     private String entityUUID;
     private Date createDate;
 }

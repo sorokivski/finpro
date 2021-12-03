@@ -1,6 +1,5 @@
 package com.project.nix.model.enums;
 
-public enum BillManipulationTypeEnum
-{
+public enum BillManipulationTypeEnum {
     INCOME, COSTS
 }

@@ -5,8 +5,7 @@ import com.project.nix.model.entities.BillManipulation;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface BillManipulationMapper
-{
+public interface BillManipulationMapper {
     BillManipulation billManipulationDTOtoBillManipulation(BillManipulationDTO billManipulationDTO);
 
     BillManipulationDTO billManipulationToBillManipulationDTO(BillManipulation billManipulation);

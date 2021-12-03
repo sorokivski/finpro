@@ -1,7 +1,6 @@
 package com.project.nix.service.auth;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
 import com.project.nix.exception.AuthorityServiceException;
 import com.project.nix.model.entities.Authority;
 import com.project.nix.model.enums.AuthorityEnum;
@@ -14,14 +13,12 @@ import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
-public class AuthorityServiceImpl implements AuthorityService
-{
+public class AuthorityServiceImpl implements AuthorityService {
     private final AuthorityRepository authorityRepository;
 
 
     @PostConstruct
-    private void doOnInit() throws JsonProcessingException
-    {
+    private void doOnInit() throws JsonProcessingException {
         Stream.of(AuthorityEnum.values())
                 .map(AuthorityEnum::name)
                 .filter(authority -> !authorityRepository.existsAuthorityByAuthority(authority))

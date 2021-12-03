@@ -4,7 +4,6 @@ import com.project.nix.model.entities.Authority;
 import com.project.nix.model.enums.AuthorityEnum;
 import lombok.NonNull;
 
-public interface AuthorityService
-{
+public interface AuthorityService {
     Authority getAuthority(@NonNull AuthorityEnum authorityEnum);
 }

@@ -16,6 +16,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+import static com.project.nix.Routes.API_ROOT;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -35,9 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
 
         http.authorizeRequests()
-                .antMatchers("/user/registration/**", "/user/authentication/**").permitAll()
+                .antMatchers(API_ROOT + "/users/registration/**", API_ROOT + "/users/authentication/**").permitAll()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                .antMatchers("/user/registration/**", "/user/authentication/**", "/currency/**").permitAll()
                 .anyRequest().authenticated();
     }
 

@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .categoryDTOtoCategory(categoryDTO);
         User user = userService.getUserByAuthentication(authentication);
 
-        if(!categoryRepository.existsCategoryByDescriptionAndUserEmail(category.getDescription(), user.getEmail()))
+        if (!categoryRepository.existsCategoryByDescriptionAndUserEmail(category.getDescription(), user.getEmail()))
             return categoryRepository.save(category);
         else throw
                 new CategoryServiceException(CategoryServiceException.DUPLICATE_CATEGORY);

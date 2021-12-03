@@ -8,9 +8,9 @@ import org.springframework.security.core.Authentication;
 
 import java.math.BigDecimal;
 
-public interface UserService
-{
+public interface UserService {
     void register(@NonNull UserDTO userDTO);
+
     String authentication(@NonNull UserDTO userDTO);
 
     User getUserByAuthentication(@NonNull Authentication authentication);

@@ -12,8 +12,7 @@ import java.util.UUID;
 @Data
 @MappedSuperclass
 @EqualsAndHashCode(of = {"entityUUID"})
-public abstract class BaseEntity
-{
+public abstract class BaseEntity {
     @Column(name = "entity_uuid")
     private String entityUUID;
 
@@ -21,8 +20,7 @@ public abstract class BaseEntity
     private Date createDate;
 
     @PrePersist
-    protected void doOnCreate()
-    {
+    protected void doOnCreate() {
         entityUUID = UUID.randomUUID().toString();
         createDate = new Date();
     }

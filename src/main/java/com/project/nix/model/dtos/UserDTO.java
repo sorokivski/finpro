@@ -9,8 +9,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class UserDTO extends BaseEntityDTO
-{
+public class UserDTO extends BaseEntityDTO {
     private String name;
     private String surname;
     private BigDecimal moneyAmount;

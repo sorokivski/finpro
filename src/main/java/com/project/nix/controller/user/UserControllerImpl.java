@@ -11,16 +11,13 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-public class UserControllerImpl implements UserController
-{
+public class UserControllerImpl implements UserController {
+    private final UserService userService;
     @Value("${spring.security.jwt.name}")
     private String JWTName;
 
-    private final UserService userService;
-
     @Override
-    public void registration(UserDTO userDTO)
-    {
+    public void registration(UserDTO userDTO) {
         userService.register(userDTO);
     }
 

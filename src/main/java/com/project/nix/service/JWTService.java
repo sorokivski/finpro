@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Optional;
 
-public interface JWTService
-{
+public interface JWTService {
     String generate(@NonNull UserDetails userDetails);
+
     Optional<Authentication> parse(@NonNull String token);
 }

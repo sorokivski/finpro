@@ -10,8 +10,7 @@ import java.util.List;
 import static com.project.nix.Routes.BILLS;
 
 @RequestMapping(BILLS)
-public interface BillController
-{
+public interface BillController {
     @PostMapping("/add/manipulation")
     BillManipulationDTO addManipulation(@RequestBody BillManipulationDTO moneyManipulationDTO,
                                         Authentication authentication);
@@ -24,6 +23,6 @@ public interface BillController
 
     @GetMapping("/get/manipulations/by/type/{type}")
     List<BillManipulationDTO> getBillManipulationByType(@PathVariable("type") String type,
-                                                          Authentication authentication);
+                                                        Authentication authentication);
 
 }

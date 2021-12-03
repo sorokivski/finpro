@@ -1,7 +1,6 @@
 package com.project.nix.model.dtos;
 
 
-
 import com.project.nix.model.entities.BillManipulation;
 import com.project.nix.model.entities.User;
 import lombok.Data;

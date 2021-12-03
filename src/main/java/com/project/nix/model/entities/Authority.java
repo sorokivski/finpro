@@ -13,24 +13,20 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"authority"})
 @AllArgsConstructor
-public class Authority implements GrantedAuthority
-{
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "authority")
-    private String authority;
-
+public class Authority implements GrantedAuthority {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "authority_user",
             joinColumns = @JoinColumn(name = "authority_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     protected Set<User> users;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(name = "authority")
+    private String authority;
 
-    public Authority(String authority)
-    {
+    public Authority(String authority) {
         this.authority = authority;
     }
 }

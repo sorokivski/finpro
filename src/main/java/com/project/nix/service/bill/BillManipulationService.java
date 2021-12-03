@@ -7,8 +7,7 @@ import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
-public interface BillManipulationService
-{
+public interface BillManipulationService {
     BillManipulationDTO add(@NonNull BillManipulationDTO billManipulationDTO, @NonNull Authentication authentication);
 
     void remove(@NonNull String moneyManipulation, @NonNull Authentication authentication);

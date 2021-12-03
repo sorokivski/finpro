@@ -8,8 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper
-{
+public interface UserMapper {
     @BeanMapping(ignoreByDefault = true)
     @Mappings({
             @Mapping(target = "email", source = "userDTO.email"),

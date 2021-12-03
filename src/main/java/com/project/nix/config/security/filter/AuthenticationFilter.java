@@ -14,16 +14,14 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class AuthenticationFilter implements Filter
-{
+public class AuthenticationFilter implements Filter {
     private final JWTService jwtService;
 
     @Value("${spring.security.jwt.name}")
     private String tokenName;
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
-    {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         SecurityContextHolder.getContext()
                 .setAuthentication(Optional.ofNullable(((HttpServletRequest) request).getHeader(tokenName))
                         .flatMap(jwtService::parse)

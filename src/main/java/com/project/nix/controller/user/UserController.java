@@ -12,8 +12,7 @@ import java.util.Map;
 import static com.project.nix.Routes.USERS;
 
 @RequestMapping(USERS)
-public interface UserController
-{
+public interface UserController {
     @PostMapping("/registration")
     void registration(@RequestBody UserDTO userDTO);
 

@@ -9,8 +9,7 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class BillManipulationDTO extends BaseEntityDTO
-{
+public class BillManipulationDTO extends BaseEntityDTO {
     private BigDecimal billAmount;
     private BillManipulationTypeEnum type;
 }

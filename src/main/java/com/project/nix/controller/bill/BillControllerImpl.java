@@ -12,31 +12,26 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class BillControllerImpl implements BillController
-{
+public class BillControllerImpl implements BillController {
     private final BillManipulationService billManipulationService;
 
     @Override
-    public BillManipulationDTO addManipulation(BillManipulationDTO billManipulationDTO, Authentication authentication)
-    {
+    public BillManipulationDTO addManipulation(BillManipulationDTO billManipulationDTO, Authentication authentication) {
         return billManipulationService.add(billManipulationDTO, authentication);
     }
 
     @Override
-    public void removeManipulation(String manipulationUUID, Authentication authentication)
-    {
+    public void removeManipulation(String manipulationUUID, Authentication authentication) {
         billManipulationService.remove(manipulationUUID, authentication);
     }
 
     @Override
-    public List<BillManipulationDTO> getAllBillManipulation(Authentication authentication)
-    {
+    public List<BillManipulationDTO> getAllBillManipulation(Authentication authentication) {
         return billManipulationService.getAll(authentication);
     }
 
     @Override
-    public List<BillManipulationDTO> getBillManipulationByType(String type, Authentication authentication)
-    {
+    public List<BillManipulationDTO> getBillManipulationByType(String type, Authentication authentication) {
         return billManipulationService.getByType(authentication, BillManipulationTypeEnum.valueOf(type));
     }
 
